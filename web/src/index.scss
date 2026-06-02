@@ -2,16 +2,20 @@ $mainColor: #222124;
 $textColor: #ffffffea;
 $mainFont: Roboto;
 
-$secondaryColor: rgba(36, 28, 43, 0.849);
-$secondaryColorHighlight: #581ec4be;
+$secondaryColor: rgba(60, 60, 61, 0.849);
+$secondaryColorHighlight: #400f9bbe;
 $secondaryColorLight: rgba(0, 0, 0, 0.5);
 $secondaryColorDark: rgba(12, 12, 12, 0.8);
 
 $gridCols: 5;
-$gridRows: 5;
+$gridRows: 3;
 $gridSize: 10.2vh;
 $gridGap: 4px;
 $containerSize: calc(#{$gridRows} * #{$gridSize + 0.22vh} + #{$gridRows} * #{$gridGap});
+
+$gridColsRight: 5;
+$gridRowsRight: 2;
+$containerSizeRight: calc(#{$gridRowsRight} * #{$gridSize + 0.22vh} + #{$gridRowsRight} * #{$gridGap});
 
 body {
   margin: 0;
@@ -118,12 +122,41 @@ button:active {
 
 .inventory-wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: start;
+  margin-left: 40px;
   height: 100%;
 
-  gap: 120px;
+  gap: 8px;
+}
+
+.inventory-left-box {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: 0;
+    margin: 0;
+}
+
+.inventory-right-box {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: 0;
+    margin: 0;
+
+    .inventory-grid-container {
+      display: grid;
+      height: $containerSizeRight;
+      padding: 12px;
+      background-color: $mainColor;
+      border-radius: 8px;
+      grid-template-columns: repeat($gridColsRight, $gridSize);
+      grid-auto-rows: $gridSize + 0.22vh;
+      gap: $gridGap;
+      overflow-y: scroll;
+  }
 }
 
 .inventory-control {
@@ -131,15 +164,18 @@ button:active {
 
   .inventory-control-wrapper {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: row;
+    gap: 10px;
     justify-content: center;
     align-items: center;
+    padding: 8px;
+    background-color: $mainColor;
+    border-radius: 8px;
   }
 
   .inventory-control-input {
     transition: 200ms;
-    padding: 16px 8px;
+    padding: 12px 8px;
     border-radius: 8px;
     font-family: $mainFont;
     font-size: 16px;
@@ -156,7 +192,7 @@ button:active {
   .inventory-control-button {
     font-size: 14px;
     color: #fff;
-    background-color: $secondaryColor;
+    background-color: $secondaryColorDark;
     transition: 200ms;
     padding: 12px 8px;
     border-radius: 2.5%;
@@ -260,14 +296,14 @@ button:active {
 .inventory-grid-wrapper {
   display: flex;
   flex-direction: column;
-  gap: calc($gridGap * 2);
+  gap: 4px;
 }
 .inventory-grid-header-wrapper {
   display: flex;
   background-color: $mainColor;
-  padding: 8px;
+  padding: 12px;
   border-radius: 8px;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   p {
     color: $textColor;
@@ -275,12 +311,15 @@ button:active {
     font-size: 16px;
   }
 
-  gap: 4px;
+  gap: 8px;
 }
 
 .inventory-grid-container {
   display: grid;
   height: $containerSize;
+  padding: 12px;
+  background-color: $mainColor;
+  border-radius: 8px;
   grid-template-columns: repeat($gridCols, $gridSize);
   grid-auto-rows: $gridSize + 0.22vh;
   gap: $gridGap;
@@ -296,8 +335,8 @@ button:active {
   image-rendering: -webkit-optimize-contrast;
   position: relative;
   background-size: 7vh;
-  color: $textColor;
   border-color: rgba(255, 255, 255, 0.5);
+  color: $textColor;
   border-style: inset;
   border-width: 1px;
 }
@@ -516,10 +555,10 @@ button:active {
 }
 
 .weight-bar {
-  background: rgba(0,0,0, 0.4);
+  background: rgba(0,0,0, 1);
   border: 1px dashed rgba(255, 255, 255, 0.5);
   padding: 4px;
-  height: 0.25vh;
+  height: 0.4vh;
   border-radius: 4px;
   overflow: hidden;
 }
