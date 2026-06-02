@@ -3,3 +3,5 @@ modules/logs/**/
 node_modules
 .idea
 .luarc.jsonc
+
+data
